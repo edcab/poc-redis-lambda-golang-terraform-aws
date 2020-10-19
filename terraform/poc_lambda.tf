@@ -1,7 +1,7 @@
 //Create lambda
 resource "aws_lambda_function" "poc_redis_create_lambda" {
   filename      =  data.archive_file.OnCreate.output_path
-  function_name = "poc_web_socket_connect_lambda"
+  function_name = "poc_redis_create_lambda"
   role          = aws_iam_role.redis_lambda_role.arn
   handler       = "main"
   source_code_hash = data.archive_file.OnCreate.output_base64sha256
