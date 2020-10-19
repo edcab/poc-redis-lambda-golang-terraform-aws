@@ -30,8 +30,3 @@ provider "archive" {}
 //     redis       = "http://0.0.0.0:4566"
 //   }
 // }
-
-# Personal
-//export AWS_ACCESS_KEY_ID="AKIAIWRGFMJ7VRGOKQ2Q"
-//export AWS_SECRET_ACCESS_KEY="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"
-//export AWS_SESSION_TOKEN=""

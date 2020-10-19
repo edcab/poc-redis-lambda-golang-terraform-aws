@@ -17,8 +17,8 @@ func handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 
 	//im creating a session
 	sess, err := session.NewSessionWithOptions(session.Options{
-		Config:            aws.Config{Region: aws.String("us-east-1")},
-		SharedConfigState: session.SharedConfigEnable,
+		Config: aws.Config{Region: aws.String("us-east-1")},
+		//SharedConfigState: session.SharedConfigEnable,
 	})
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err
