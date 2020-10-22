@@ -1,19 +1,3 @@
-//resource "aws_elasticache_subnet_group" "default" {
-//name       = "${var.namespace}-cache-subnet"
-//subnet_ids = ["${aws_subnet.default.*.id}"]
-//}
-//
-//
-//
-//resource "aws_elasticache_cluster" "poc_redis_golang"{
-//  cluster_id = "cluster-poc"
-//  engine = "redis"
-//  node_type = "cache.t2.micro"
-//  port = 11211
-//  num_cache_nodes = 1
-//  parameter_group_name = "default.redis3.2"
-//}
-
 resource "aws_security_group" "default" {
   name_prefix = var.namespace
   vpc_id      = aws_vpc.default.id
