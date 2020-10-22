@@ -1,9 +1,9 @@
-package redisdb
+package redis
 
 import (
 	"context"
-	"fmt"
 	"log"
+	"time"
 
 	"github.com/go-redis/redis/v8"
 )
@@ -14,10 +14,11 @@ type redisDataBase struct {
 
 // NewRedisDBStorage creates and returns redis db connection instance
 func NewRedisDBStorage(ctx context.Context) (*redisDataBase, error) {
-
+	log.Println("NewRedisDBStorage")
 	dataBase := &redisDataBase{}
 	err := dataBase.OpenConnection(ctx)
 	if err != nil {
+		log.Println("error opening connection", err)
 		return nil, err
 	}
 
@@ -26,24 +27,24 @@ func NewRedisDBStorage(ctx context.Context) (*redisDataBase, error) {
 
 // OpenConnection start redis db connection
 func (db *redisDataBase) OpenConnection(ctx context.Context) error {
-
+	log.Println("opening connection")
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "",
-		DB:       0,
+		Addr:        "redis-cluster.sfofiy.clustercfg.use1.cache.amazonaws.com:6379", //hard code because cannot retrieve from ssm
+		Password:    "",                                                              // no password set
+		DB:          0,
+		DialTimeout: 30 * time.Second,
 	})
+	log.Println("rdb: ", rdb)
 
-	pong, err := rdb.Ping(rdb.Context()).Result()
+	pong, err := rdb.Ping(ctx).Result()
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return err
 	}
 	log.Printf("Ping Redis connection: %s", pong)
-	fmt.Printf("Ping Redis connection: %s", pong)
 
 	db.databaseConnection = rdb
 	log.Println("RedisDB UP")
-	fmt.Println("RedisDB UP")
 	return nil
 }
 

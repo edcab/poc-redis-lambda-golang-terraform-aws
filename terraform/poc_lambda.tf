@@ -6,6 +6,10 @@ resource "aws_lambda_function" "poc_redis_create_lambda" {
   handler       = "main"
   source_code_hash = data.archive_file.OnCreate.output_base64sha256
   runtime = "go1.x"
+  vpc_config {
+    subnet_ids          = flatten([aws_subnet.default.*.id])
+    security_group_ids  = [aws_security_group.default.id]
+  }
 }
 
 //All incoming requests to API Gateway must match with a configured resource and method in order to be handled.
