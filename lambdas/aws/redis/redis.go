@@ -29,8 +29,8 @@ func NewRedisDBStorage(ctx context.Context) (*redisDataBase, error) {
 func (db *redisDataBase) OpenConnection(ctx context.Context) error {
 	log.Println("opening connection")
 	rdb := redis.NewClient(&redis.Options{
-		Addr:        "redis-cluster.sfofiy.clustercfg.use1.cache.amazonaws.com:6379", //hard code because cannot retrieve from ssm
-		Password:    "",                                                              // no password set
+		Addr:        "poc-redis-cluster.sfofiy.0001.use1.cache.amazonaws.com:6379", //hard code, this is better retrieve from parameter store
+		Password:    "",
 		DB:          0,
 		DialTimeout: 30 * time.Second,
 	})

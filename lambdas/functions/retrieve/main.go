@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/poc-redis-lambda-golang-terraform-aws/lambdas/config/redis"
+	"github.com/poc-redis-lambda-golang-terraform-aws/lambdas/aws/redis"
 	"log"
 )
 

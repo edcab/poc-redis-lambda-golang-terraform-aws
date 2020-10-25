@@ -23,5 +23,5 @@ variable "public_key_path" {
 
 variable "node_groups" {
   description = "Number of nodes groups to create in the cluster"
-  default     = 1
+  default     = 0
 }

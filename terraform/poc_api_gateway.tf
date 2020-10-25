@@ -20,7 +20,7 @@ resource "aws_api_gateway_method_settings" "general_settings" {
   }
 }
 
-resource "aws_api_gateway_integration" "lambda" {
+resource "aws_api_gateway_integration" "lambda_create" {
   rest_api_id = aws_api_gateway_rest_api.poc_gateway_redis.id
   resource_id = aws_api_gateway_method.post_create.resource_id
   http_method = aws_api_gateway_method.post_create.http_method
@@ -42,8 +42,7 @@ resource "aws_api_gateway_integration" "lambda_retrieve" {
 
 resource "aws_api_gateway_deployment" "deploy_gateway_lambda" {
   depends_on = [
-    aws_api_gateway_integration.lambda,
-//    aws_api_gateway_integration.lambda_root,
+    aws_api_gateway_integration.lambda_create,
     aws_api_gateway_integration.lambda_retrieve,
   ]
 
